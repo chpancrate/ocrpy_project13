@@ -1,0 +1,4 @@
+[run]
+omit = 
+    lettings/tests/*
+    profiles/tests/*
