@@ -2,3 +2,4 @@
 omit = 
     lettings/tests/*
     profiles/tests/*
+    oc_lettings_site/tests/*
