@@ -1,5 +1,6 @@
 import os
-
+import sentry_sdk
+from dotenv import load_dotenv
 from pathlib import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -114,3 +115,18 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static",]
+
+# sentry monitoring settings
+load_dotenv()
+sentry_dsn = os.getenv("SENTRY_DSN")
+
+sentry_sdk.init(
+    dsn=sentry_dsn,
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    traces_sample_rate=1.0,
+    # Set profiles_sample_rate to 1.0 to profile 100%
+    # of sampled transactions.
+    # We recommend adjusting this value in production.
+    profiles_sample_rate=1.0,
+)
