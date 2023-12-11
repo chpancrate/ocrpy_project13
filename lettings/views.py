@@ -23,7 +23,7 @@ def index(request):
 
 def letting(request, letting_id):
     """
-    Display the details of one letting using the lettingd/letting.html template.
+    Display the details of one letting using the lettings/letting.html template.
     Get the details of the letting using the letting_id contained in the url
     parameters
     ----------
