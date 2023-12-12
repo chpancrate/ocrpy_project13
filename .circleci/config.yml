@@ -39,6 +39,6 @@ workflows:
   sqlite_app_test_and_build:
     jobs:
       - app_test
-      - container_build
+      - container_build:
           requires:
-            - app-test
+            - app_test
