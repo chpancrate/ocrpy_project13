@@ -38,6 +38,6 @@ workflows:
   sqlite_app_test_and_build:
     jobs:
       - build_and_test
-      - docker_build_and_push
+      - docker_build_and_push:
         requires:
           - build_and_test
