@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  build_and_test:
+  app_test:
     docker: 
       - image: cimg/python:3.12
     steps:
@@ -22,7 +22,8 @@ jobs:
           root: ~/project
           paths:
             - .
-  docker_build_and_push:
+
+  container_build:
     docker:
       - image: cimg/go:1.21
     steps:
@@ -37,7 +38,7 @@ jobs:
 workflows:
   sqlite_app_test_and_build:
     jobs:
-      - build_and_test
-      - docker_build_and_push:
-        requires:
-          - build_and_test
+      - app_test
+      - container_build
+          requires:
+            - app-test
