@@ -22,8 +22,22 @@ jobs:
           root: ~/project
           paths:
             - .
+  docker_build_and_push:
+    docker:
+      - image: cimg/go:1.21
+    steps:
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run: |
+          TAG=0.1.$CIRCLE_BUILD_NUM
+          docker build -t chpancrate/ocrp13-sqlite:$TAG .
+          echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+          docker push chpancrate/ocrp13-sqlite:$TAG
 
 workflows:
-  test_my_app:
+  sqlite_app_test_and_build:
     jobs:
       - build_and_test
+      - docker_build_and_push
+        requires:
+          - build_and_test
