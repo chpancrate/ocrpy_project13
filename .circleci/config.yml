@@ -1,0 +1,45 @@
+version: 2.1
+
+jobs:
+  app_test:
+    docker: 
+      - image: cimg/python:3.12
+    steps:
+      - checkout
+      - run:
+          name: Create venv
+          command: python3 -m venv venv
+      - run:
+          name: Activate venv
+          command: . venv/bin/activate
+      - run:
+          name: Install dependencies
+          command: pip install -r requirements.txt
+      - run:
+          name: Run tests
+          command: python -m pytest
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - .
+
+  container_build:
+    docker:
+      - image: cimg/go:1.21
+    steps:
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - checkout
+      - run: |
+          TAG=0.1.$CIRCLE_BUILD_NUM
+          docker build -t chpancrate/ocrp13-sqlite:$TAG .
+          echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+          docker push chpancrate/ocrp13-sqlite:$TAG
+
+workflows:
+  sqlite_app_test_and_build:
+    jobs:
+      - app_test
+      - container_build:
+          requires:
+            - app_test
