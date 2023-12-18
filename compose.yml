@@ -10,7 +10,7 @@ services:
   oc_lettings_site:
     depends_on:
       - pg_db
-    image: ocrp13-pgsql:latest
+    image: chpancrate/ocrp13-pgsql:latest
     expose:
       - 8000
     restart: always
