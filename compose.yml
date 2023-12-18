@@ -1,0 +1,26 @@
+version: '3'
+services:
+  pg_db:
+    image: postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    restart: always
+    env_file:
+      - .env
+  oc_lettings_site:
+    depends_on:
+      - pg_db
+    image: ocrp13-pgsql:latest
+    expose:
+      - 8000
+    restart: always
+    env_file:
+      - .env
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+    depends_on:
+      - oc_lettings_site
+volumes:
+  db_data: {}
