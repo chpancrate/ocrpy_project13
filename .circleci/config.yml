@@ -23,6 +23,16 @@ jobs:
           paths:
             - .
 
+  linting:
+    docker: 
+      - image: cimg/python:3.12
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run:
+          name: lint code
+          command: flake8
+
   container_build:
     docker:
       - image: cimg/go:1.21
@@ -38,9 +48,12 @@ jobs:
           docker push chpancrate/ocrp13-pgsql:latest
 
 workflows:
-  sqlite_app_test_and_build:
+  postgresql_app_test_and_build:
     jobs:
       - app_test
-      - container_build:
+      - linting:
           requires:
             - app_test
+      - container_build:
+          requires:
+            - linting
