@@ -17,10 +17,13 @@ jobs:
           command: pip install -r requirements.txt
       - run:
           name: Lint code
-          command: flake8 --statistics .
+          command: flake8 .
       - run:
           name: Run tests
           command: python -m pytest
+      - run:
+          name: Test coverage
+          command: coverage run -m pytest
       - persist_to_workspace:
           root: ~/project
           paths:
