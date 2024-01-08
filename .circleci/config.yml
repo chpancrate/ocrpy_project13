@@ -50,3 +50,7 @@ workflows:
       - container_build:
           requires:
             - app_linting_and_test
+          filters:
+            branches:
+              only:
+                - main
