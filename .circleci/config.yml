@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  app_test:
+  app_linting_and_test:
     docker: 
       - image: cimg/python:3.12
     steps:
@@ -16,25 +16,15 @@ jobs:
           name: Install dependencies
           command: pip install -r requirements.txt
       - run:
+          name: Lint code
+          command: flake8
+      - run:
           name: Run tests
           command: python -m pytest
       - persist_to_workspace:
           root: ~/project
           paths:
             - .
-
-  linting:
-    docker: 
-      - image: cimg/python:3.12
-    steps:
-      - attach_workspace:
-          at: ~/project
-      - run:
-          name: Activate venv
-          command: . venv/bin/activate
-      - run:
-          name: lint code
-          command: flake8
 
   container_build:
     docker:
@@ -53,10 +43,7 @@ jobs:
 workflows:
   postgresql_app_test_and_build:
     jobs:
-      - app_test
-      - linting:
-          requires:
-            - app_test
+      - app_linting_and_test
       - container_build:
           requires:
-            - linting
+            - app_linting_and_test
