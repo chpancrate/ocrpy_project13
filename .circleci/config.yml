@@ -30,6 +30,9 @@ jobs:
       - attach_workspace:
           at: ~/project
       - run:
+          name: Activate venv
+          command: . venv/bin/activate
+      - run:
           name: lint code
           command: flake8
 
