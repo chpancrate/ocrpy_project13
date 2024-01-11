@@ -92,14 +92,15 @@ Ils sont hébergés sur une machine EC2 t2 micro chez AWS.
 #### Prérequis
 
 Il est nécessaire d'avoir un compte chez AWS et de créer une instance AWS EC2 t2 micro avec un disque de 20 Go et utilisant Amazon linux.
+A la création de l'instance il faut s'assurer que le traffic est accépter depuis internet pour les 2 ports suivant :
+- 80 : pour le site web
+- 8001 : pour le webhook de Docker Hub
 
 Il faut prévoir des outils permettant de se connecter avec un terminal à la machine et d'y transférer des fichiers. Dans un environnement Windows il est possible d'utiliser :
 - putty : https://www.putty.org
 - winscp : https://winscp.net/eng/index.php
 
-Dans la suite des instruction nous assumerons que l'utilisateur utiliser pour se connecter à AWS est ec2-user. Si ce n'est pas votre cas remplacez-le par votre utilisateur.
-
-!!!!!!!!!!!!!!!!  PARAMETRAGE de l'EC2 !!!!!!!!!!!!!!!
+Dans la suite des instructions nous assumerons que l'utilisateur utiliser pour se connecter à AWS est ec2-user. Si ce n'est pas votre cas remplacez-le par votre utilisateur.
 
 #### Installation de Docker
 
