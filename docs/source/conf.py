@@ -5,10 +5,12 @@
 
 import os
 import sys
+import django
 
-sys.path.insert(0, os.path.abspath(os.path.join("..", "..", "lettings")))
-sys.path.insert(0, os.path.abspath('profiles'))
-sys.path.insert(0, os.path.abspath('oc_lettings_site'))
+sys.path.insert(0, os.path.abspath('../..'))
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "oc_lettings_site.settings")
+django.setup()
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -31,5 +33,5 @@ exclude_patterns = []
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'alabaster'
+html_theme = 'bizstyle'
 html_static_path = ['_static']
