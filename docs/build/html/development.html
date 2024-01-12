@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Development &#8212; OC Lettings Site 0.1 documentation</title>
+    <title>Development Environment setup &#8212; OC Lettings Site 0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=649a27d8" />
     <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=532c1bf3" />
     
@@ -17,7 +17,7 @@
     <script src="_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Deployment" href="deployment.html" />
+    <link rel="next" title="Tests" href="tests.html" />
     <link rel="prev" title="Architecture" href="architecture.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
@@ -34,13 +34,13 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="deployment.html" title="Deployment"
+          <a href="tests.html" title="Tests"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="architecture.html" title="Architecture"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">OC Lettings Site 0.1 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Development</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Development Environment setup</a></li> 
       </ul>
     </div>  
 
@@ -49,20 +49,18 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="development">
-<h1>Development<a class="headerlink" href="#development" title="Link to this heading">¶</a></h1>
-<section id="environment-setup">
-<h2>Environment setup<a class="headerlink" href="#environment-setup" title="Link to this heading">¶</a></h2>
+  <section id="development-environment-setup">
+<h1>Development Environment setup<a class="headerlink" href="#development-environment-setup" title="Link to this heading">¶</a></h1>
 <p>Place yourself in the directory where you want to work.</p>
 <section id="code-cloning">
-<h3>Code cloning<a class="headerlink" href="#code-cloning" title="Link to this heading">¶</a></h3>
+<h2>Code cloning<a class="headerlink" href="#code-cloning" title="Link to this heading">¶</a></h2>
 <p>The code can be cloned from <a class="reference external" href="https://github.com/chpancrate/ocrpy_project13">https://github.com/chpancrate/ocrpy_project13</a> using the command</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">chpancrate</span><span class="o">/</span><span class="n">ocrpy_project13</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
 </section>
 <section id="virtual-environment-creation-and-activation">
-<h3>Virtual environment creation and activation<a class="headerlink" href="#virtual-environment-creation-and-activation" title="Link to this heading">¶</a></h3>
+<h2>Virtual environment creation and activation<a class="headerlink" href="#virtual-environment-creation-and-activation" title="Link to this heading">¶</a></h2>
 <p>In unix</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">venv</span>
 <span class="n">source</span> <span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
@@ -79,35 +77,24 @@
 </div>
 </section>
 <section id="to-launch-the-web-site">
-<h3>To launch the web site<a class="headerlink" href="#to-launch-the-web-site" title="Link to this heading">¶</a></h3>
+<h2>To launch the web site<a class="headerlink" href="#to-launch-the-web-site" title="Link to this heading">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">requirement</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
 <span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">runserver</span>
 </pre></div>
 </div>
 <p>The site can be accessed with <a class="reference external" href="http://localhost:8000">http://localhost:8000</a> in a web browser.</p>
-<p>The website administratin is reached with : <a class="reference external" href="http://localhost:8000/admin">http://localhost:8000/admin</a></p>
+<p>The website administration is reached with : <a class="reference external" href="http://localhost:8000/admin">http://localhost:8000/admin</a></p>
 <p>User : admin</p>
 <p>Password : Abc1234!</p>
 </section>
 <section id="linting">
-<h3>Linting<a class="headerlink" href="#linting" title="Link to this heading">¶</a></h3>
-<p>The linting uses the modules Flake8.
-.. code-block:</p>
+<h2>Linting<a class="headerlink" href="#linting" title="Link to this heading">¶</a></h2>
+<p>The linting uses the modules Flake8. To run it :</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
 <span class="n">flake8</span>
 </pre></div>
 </div>
-</section>
-<section id="unit-tests">
-<h3>Unit Tests<a class="headerlink" href="#unit-tests" title="Link to this heading">¶</a></h3>
-<p>Unit tests can be run using pytest.
-.. code-block:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
-<span class="n">pytest</span>
-</pre></div>
-</div>
-</section>
 </section>
 </section>
 
@@ -121,15 +108,11 @@
   <div>
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
-<li><a class="reference internal" href="#">Development</a><ul>
-<li><a class="reference internal" href="#environment-setup">Environment setup</a><ul>
+<li><a class="reference internal" href="#">Development Environment setup</a><ul>
 <li><a class="reference internal" href="#code-cloning">Code cloning</a></li>
 <li><a class="reference internal" href="#virtual-environment-creation-and-activation">Virtual environment creation and activation</a></li>
 <li><a class="reference internal" href="#to-launch-the-web-site">To launch the web site</a></li>
 <li><a class="reference internal" href="#linting">Linting</a></li>
-<li><a class="reference internal" href="#unit-tests">Unit Tests</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -142,8 +125,8 @@
   </div>
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="deployment.html"
-                          title="next chapter">Deployment</a></p>
+    <p class="topless"><a href="tests.html"
+                          title="next chapter">Tests</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -176,13 +159,13 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="deployment.html" title="Deployment"
+          <a href="tests.html" title="Tests"
              >next</a> |</li>
         <li class="right" >
           <a href="architecture.html" title="Architecture"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">OC Lettings Site 0.1 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Development</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Development Environment setup</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

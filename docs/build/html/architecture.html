@@ -17,7 +17,7 @@
     <script src="_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Development" href="development.html" />
+    <link rel="next" title="Development Environment setup" href="development.html" />
     <link rel="prev" title="Description" href="description.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
@@ -34,7 +34,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="development.html" title="Development"
+          <a href="development.html" title="Development Environment setup"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="description.html" title="Description"
@@ -51,6 +51,11 @@
             
   <section id="architecture">
 <h1>Architecture<a class="headerlink" href="#architecture" title="Link to this heading">¶</a></h1>
+<p>The site is composed of the main application oc_lettings_site which uses two services:</p>
+<ul class="simple">
+<li><p>lettings, which handles the lettings</p></li>
+<li><p>profiles, which handles the users profiles</p></li>
+</ul>
 <section id="database">
 <h2>Database<a class="headerlink" href="#database" title="Link to this heading">¶</a></h2>
 <section id="schema">
@@ -60,7 +65,7 @@
 </section>
 <section id="models">
 <h3>Models<a class="headerlink" href="#models" title="Link to this heading">¶</a></h3>
-<p>The Django models describing the tables are:</p>
+<p>The Django models implementing the structure above are :</p>
 <dl class="py class" id="module-lettings.models">
 <dt class="sig sig-object py" id="lettings.models.Address">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lettings.models.</span></span><span class="sig-name descname"><span class="pre">Address</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lettings.models.Address" title="Link to this definition">¶</a></dt>
@@ -118,21 +123,23 @@
 </section>
 <section id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Link to this heading">¶</a></h2>
-<p>The site is rendered by the following Django views :</p>
-<dl class="py function" id="module-lettings.views">
+<p>The various parts of the site are implemented with the following views functions:</p>
+<section id="module-lettings.views">
+<span id="lettings"></span><h3>Lettings<a class="headerlink" href="#module-lettings.views" title="Link to this heading">¶</a></h3>
+<dl class="py function">
 <dt class="sig sig-object py" id="lettings.views.index">
 <span class="sig-prename descclassname"><span class="pre">lettings.views.</span></span><span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lettings.views.index" title="Link to this definition">¶</a></dt>
 <dd><p>Display the lettings index page using the lettings/index.html template.
 Get the list of all lettings to display them on the page</p>
 <section id="parameters">
-<h3>parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h3>
+<h4>parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>request<span class="classifier">HttpRequest</span></dt><dd><p>http request to be processed</p>
 </dd>
 </dl>
 </section>
 <section id="return">
-<h3>return<a class="headerlink" href="#return" title="Link to this heading">¶</a></h3>
+<h4>return<a class="headerlink" href="#return" title="Link to this heading">¶</a></h4>
 <p>the rendered web page</p>
 </section>
 </dd></dl>
@@ -143,7 +150,7 @@ Get the list of all lettings to display them on the page</p>
 <dd><p>Display the details of one letting using the lettings/letting.html template.
 Get the details of the letting using the letting_id contained in the url</p>
 <section id="id3">
-<h3>parameters<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<h4>parameters<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>request<span class="classifier">HttpRequest</span></dt><dd><p>http request to be processed</p>
 </dd>
@@ -152,25 +159,28 @@ Get the details of the letting using the letting_id contained in the url</p>
 </dl>
 </section>
 <section id="id4">
-<h3>return<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<h4>return<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
 <p>the rendered web page</p>
 </section>
 </dd></dl>
 
-<dl class="py function" id="module-profiles.views">
+</section>
+<section id="module-profiles.views">
+<span id="profiles"></span><h3>Profiles<a class="headerlink" href="#module-profiles.views" title="Link to this heading">¶</a></h3>
+<dl class="py function">
 <dt class="sig sig-object py" id="profiles.views.index">
 <span class="sig-prename descclassname"><span class="pre">profiles.views.</span></span><span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#profiles.views.index" title="Link to this definition">¶</a></dt>
 <dd><p>Display the profiles index page using the profiles/index.html template.
 Get the list of all profiles to display them on the page</p>
 <section id="id5">
-<h3>parameters<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
+<h4>parameters<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>request<span class="classifier">HttpRequest</span></dt><dd><p>http request to be processed</p>
 </dd>
 </dl>
 </section>
 <section id="id6">
-<h3>return<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
+<h4>return<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h4>
 <p>the rendered web page</p>
 </section>
 </dd></dl>
@@ -181,7 +191,7 @@ Get the list of all profiles to display them on the page</p>
 <dd><p>Display the details of one user profile using the profiles/profile.html template.
 Get the details of the profile using the username contained in the url</p>
 <section id="id7">
-<h3>parameters<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<h4>parameters<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>request<span class="classifier">HttpRequest</span></dt><dd><p>http request to be processed</p>
 </dd>
@@ -190,12 +200,33 @@ Get the details of the profile using the username contained in the url</p>
 </dl>
 </section>
 <section id="id8">
-<h3>return<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
+<h4>return<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h4>
 <p>the rendered web page</p>
 </section>
 </dd></dl>
 
-<span class="target" id="module-oc_lettings_site.views"></span></section>
+</section>
+<section id="module-oc_lettings_site.views">
+<span id="oc-lettings-site"></span><h3>OC Lettings Site<a class="headerlink" href="#module-oc_lettings_site.views" title="Link to this heading">¶</a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="oc_lettings_site.views.index">
+<span class="sig-prename descclassname"><span class="pre">oc_lettings_site.views.</span></span><span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oc_lettings_site.views.index" title="Link to this definition">¶</a></dt>
+<dd><p>Display the home age from the site.</p>
+<section id="id9">
+<h4>parameters<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>request<span class="classifier">HttpRequest</span></dt><dd><p>http request to be processed</p>
+</dd>
+</dl>
+</section>
+<section id="id10">
+<h4>return<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h4>
+<p>the rendered web page</p>
+</section>
+</dd></dl>
+
+</section>
+</section>
 </section>
 
 
@@ -220,10 +251,20 @@ Get the details of the profile using the username contained in the url</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#modules">Modules</a><ul>
+<li><a class="reference internal" href="#module-lettings.views">Lettings</a><ul>
 <li><a class="reference internal" href="#lettings.views.index"><code class="docutils literal notranslate"><span class="pre">index()</span></code></a></li>
 <li><a class="reference internal" href="#lettings.views.letting"><code class="docutils literal notranslate"><span class="pre">letting()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-profiles.views">Profiles</a><ul>
 <li><a class="reference internal" href="#profiles.views.index"><code class="docutils literal notranslate"><span class="pre">index()</span></code></a></li>
 <li><a class="reference internal" href="#profiles.views.profile"><code class="docutils literal notranslate"><span class="pre">profile()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-oc_lettings_site.views">OC Lettings Site</a><ul>
+<li><a class="reference internal" href="#oc_lettings_site.views.index"><code class="docutils literal notranslate"><span class="pre">index()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -239,7 +280,7 @@ Get the details of the profile using the username contained in the url</p>
   <div>
     <h4>Next topic</h4>
     <p class="topless"><a href="development.html"
-                          title="next chapter">Development</a></p>
+                          title="next chapter">Development Environment setup</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -272,7 +313,7 @@ Get the details of the profile using the username contained in the url</p>
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="development.html" title="Development"
+          <a href="development.html" title="Development Environment setup"
              >next</a> |</li>
         <li class="right" >
           <a href="description.html" title="Description"

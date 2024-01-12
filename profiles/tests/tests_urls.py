@@ -9,7 +9,9 @@ from django.contrib.auth.models import User
 def test_profiles_index_url():
     '''
     GIVEN
+
     WHEN accessing the url /profiles/
+
     THEN the view profiles:index is called
     '''
 
@@ -23,7 +25,9 @@ def test_profiles_index_url():
 def test_profile_details_url():
     '''
     GIVEN a username
+
     WHEN accessing the url /profiles/username/
+
     THEN the view letting is called
     '''
 

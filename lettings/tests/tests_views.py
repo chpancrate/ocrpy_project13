@@ -10,7 +10,9 @@ from pytest_django.asserts import assertTemplateUsed
 def test_lettings_index_view():
     '''
     GIVEN a letting
+
     WHEN accessing lettings/
+
     THEN the template letting/index.html is displayed
          and the lettings list is displayed
     '''
@@ -44,7 +46,9 @@ def test_lettings_index_view():
 def test_lettings_details_view():
     '''
     GIVEN a letting
+
     WHEN accessing lettings/letting_id
+
     THEN the template letting/letting.html is displayed
          and the letting data are displayed
     '''

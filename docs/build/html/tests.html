@@ -1,0 +1,329 @@
+
+
+<!doctype html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tests &#8212; OC Lettings Site 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=649a27d8" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=532c1bf3" />
+    
+    <script src="_static/documentation_options.js?v=2709fde1"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Deployment" href="deployment.html" />
+    <link rel="prev" title="Development Environment setup" href="development.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="deployment.html" title="Deployment"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="development.html" title="Development Environment setup"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">OC Lettings Site 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Tests</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="tests">
+<h1>Tests<a class="headerlink" href="#tests" title="Link to this heading">¶</a></h1>
+<section id="unit-tests">
+<h2>Unit Tests<a class="headerlink" href="#unit-tests" title="Link to this heading">¶</a></h2>
+<p>Unit tests can be run using pytest.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+<span class="n">pytest</span>
+</pre></div>
+</div>
+<p>Here is the list of unit tests by application.</p>
+<section id="lettings">
+<h3>Lettings<a class="headerlink" href="#lettings" title="Link to this heading">¶</a></h3>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">lettings.tests.tests_models.</span></span><span class="sig-name descname"><span class="pre">test_address_str</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>GIVEN an Address object</p>
+<p>WHEN using the str function on the address</p>
+<p>THEN the __str__ format is returned</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">lettings.tests.tests_models.</span></span><span class="sig-name descname"><span class="pre">test_letting_str</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>GIVEN a Letting object</p>
+<p>WHEN using the str function on the letting</p>
+<p>THEN the __str__ format is returned</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">lettings.tests.tests_urls.</span></span><span class="sig-name descname"><span class="pre">test_lettings_details_url</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>GIVEN a letting_id</p>
+<p>WHEN accessing the url /lettings/letting_id/</p>
+<p>THEN the view lettings:letting is called</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">lettings.tests.tests_urls.</span></span><span class="sig-name descname"><span class="pre">test_lettings_index_url</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>GIVEN</p>
+<p>WHEN accessing the url /lettings/</p>
+<p>THEN the view lettings:index is called</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">lettings.tests.tests_views.</span></span><span class="sig-name descname"><span class="pre">test_lettings_details_view</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>GIVEN a letting</p>
+<p>WHEN accessing lettings/letting_id</p>
+<dl class="simple">
+<dt>THEN the template letting/letting.html is displayed</dt><dd><p>and the letting data are displayed</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">lettings.tests.tests_views.</span></span><span class="sig-name descname"><span class="pre">test_lettings_index_view</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>GIVEN a letting</p>
+<p>WHEN accessing lettings/</p>
+<dl class="simple">
+<dt>THEN the template letting/index.html is displayed</dt><dd><p>and the lettings list is displayed</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="profiles">
+<h3>Profiles<a class="headerlink" href="#profiles" title="Link to this heading">¶</a></h3>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">profiles.tests.tests_models.</span></span><span class="sig-name descname"><span class="pre">test_profile_str</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>GIVEN a Profile object</p>
+<p>WHEN using the str function on the profile</p>
+<p>THEN the __str__ format is returned</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">profiles.tests.tests_urls.</span></span><span class="sig-name descname"><span class="pre">test_profile_details_url</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>GIVEN a username</p>
+<p>WHEN accessing the url /profiles/username/</p>
+<p>THEN the view letting is called</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">profiles.tests.tests_urls.</span></span><span class="sig-name descname"><span class="pre">test_profiles_index_url</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>GIVEN</p>
+<p>WHEN accessing the url /profiles/</p>
+<p>THEN the view profiles:index is called</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">profiles.tests.tests_views.</span></span><span class="sig-name descname"><span class="pre">test_lettings_details_view</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>GIVEN a username</p>
+<p>WHEN accessing the url /profiles/username/</p>
+<dl class="simple">
+<dt>THEN the template profiles/profile.html is displayed</dt><dd><p>and the profile data are displayed</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">profiles.tests.tests_views.</span></span><span class="sig-name descname"><span class="pre">test_profiles_index_view</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>GIVEN a profile</p>
+<p>WHEN accessing the url /profiles/</p>
+<dl class="simple">
+<dt>THEN the template profiles/index.html is displayed</dt><dd><p>and the profiles list is displayed</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="oc-lettings-site">
+<h3>OC Lettings Site<a class="headerlink" href="#oc-lettings-site" title="Link to this heading">¶</a></h3>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">oc_lettings_site.tests.tests_urls.</span></span><span class="sig-name descname"><span class="pre">test_oc_lettings_site_index_url</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>GIVEN</p>
+<p>WHEN accessing the url /</p>
+<p>THEN the view index is called</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">oc_lettings_site.tests.tests_views.</span></span><span class="sig-name descname"><span class="pre">test_oc_lettings_site_index_view</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>GIVEN</p>
+<p>WHEN accessing the url /</p>
+<dl class="simple">
+<dt>THEN the template index.html is displayed</dt><dd><p>and the site home page is displayed</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="functional-tests">
+<h2>Functional Tests<a class="headerlink" href="#functional-tests" title="Link to this heading">¶</a></h2>
+<p>Functional tests can be launched using pytest and selenium:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+<span class="n">pytest</span> <span class="o">./</span><span class="n">oc_lettings_site</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="n">functional_test</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Below are the functional tests :</p>
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oc_lettings_site.tests.functional_test.</span></span><span class="sig-name descname"><span class="pre">OCLettingsSite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">test_lettings_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Tests the following path :</p>
+<ul class="simple">
+<li><p>homepage</p></li>
+<li><p>lettings list</p></li>
+<li><p>letting details</p></li>
+<li><p>back button</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">test_page_404</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Tests the following path :</p>
+<ul class="simple">
+<li><p>homepage</p></li>
+<li><p>wrong url</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">test_page_500</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Tests the following path :</p>
+<ul class="simple">
+<li><p>homepage</p></li>
+<li><p>wrong lettings page index</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">test_profiles_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Tests the following path :</p>
+<ul class="simple">
+<li><p>homepage</p></li>
+<li><p>profiles list</p></li>
+<li><p>profile details</p></li>
+<li><p>back button</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Tests</a><ul>
+<li><a class="reference internal" href="#unit-tests">Unit Tests</a><ul>
+<li><a class="reference internal" href="#lettings">Lettings</a></li>
+<li><a class="reference internal" href="#profiles">Profiles</a></li>
+<li><a class="reference internal" href="#oc-lettings-site">OC Lettings Site</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#functional-tests">Functional Tests</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="development.html"
+                          title="previous chapter">Development Environment setup</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="deployment.html"
+                          title="next chapter">Deployment</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/tests.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="deployment.html" title="Deployment"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="development.html" title="Development Environment setup"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">OC Lettings Site 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Tests</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, C. Pancrate.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

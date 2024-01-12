@@ -7,7 +7,9 @@ from django.urls import reverse, resolve
 def test_oc_lettings_site_index_url():
     '''
     GIVEN
+
     WHEN accessing the url /
+
     THEN the view index is called
     '''
 

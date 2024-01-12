@@ -11,7 +11,9 @@ from pytest_django.asserts import assertTemplateUsed
 def test_profiles_index_view():
     '''
     GIVEN a profile
+
     WHEN accessing the url /profiles/
+
     THEN the template profiles/index.html is displayed
          and the profiles list is displayed
     '''
@@ -44,7 +46,9 @@ def test_profiles_index_view():
 def test_lettings_details_view():
     '''
     GIVEN a username
+
     WHEN accessing the url /profiles/username/
+
     THEN the template profiles/profile.html is displayed
          and the profile data are displayed
     '''

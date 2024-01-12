@@ -14,6 +14,17 @@ class OCLettingsSite(unittest.TestCase):
         self.driver.quit()
 
     def test_profiles_path(self):
+        """
+        Tests the following path :
+
+        - homepage
+
+        - profiles list
+
+        - profile details
+
+        - back button
+        """
         # connect to homepage
         self.driver.get('http://localhost:8000/')
         time.sleep(TIME_SLEEP)
@@ -54,6 +65,17 @@ class OCLettingsSite(unittest.TestCase):
                          'Profiles')
 
     def test_lettings_path(self):
+        """
+        Tests the following path :
+
+        - homepage
+
+        - lettings list
+
+        - letting details
+
+        - back button
+        """
         # connect to homepage
         self.driver.get('http://localhost:8000/')
         time.sleep(TIME_SLEEP)
@@ -94,6 +116,13 @@ class OCLettingsSite(unittest.TestCase):
                          'Lettings')
 
     def test_page_404(self):
+        """
+        Tests the following path :
+
+        - homepage
+
+        - wrong url
+        """
         # connect to homepage
         self.driver.get('http://localhost:8000/')
         time.sleep(TIME_SLEEP)
@@ -113,6 +142,13 @@ class OCLettingsSite(unittest.TestCase):
                          'Page not found')
 
     def test_page_500(self):
+        """
+        Tests the following path :
+
+        - homepage
+
+        - wrong lettings page index
+        """
         # connect to homepage
         self.driver.get('http://localhost:8000/')
         time.sleep(TIME_SLEEP)

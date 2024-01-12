@@ -1,6 +1,11 @@
 Architecture
 ============
 
+The site is composed of the main application oc_lettings_site which uses two services:
+
+- lettings, which handles the lettings
+- profiles, which handles the users profiles 
+
 Database
 --------
 
@@ -12,7 +17,7 @@ The database structure is the following :
 
 Models
 """"""
-The Django models describing the tables are:
+The Django models implementing the structure above are :
 
 .. automodule:: lettings.models
    :members:
@@ -23,13 +28,19 @@ The Django models describing the tables are:
 
 Modules
 -------
-The site is rendered by the following Django views :
+The various parts of the site are implemented with the following views functions:
 
+Lettings
+""""""""
 .. automodule:: lettings.views
    :members:
 
+Profiles
+""""""""
 .. automodule:: profiles.views
    :members:
 
+OC Lettings Site
+""""""""""""""""
 .. automodule:: oc_lettings_site.views
    :members:

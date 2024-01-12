@@ -8,7 +8,9 @@ from django.contrib.auth.models import User
 def test_profile_str():
     '''
     GIVEN a Profile object
+
     WHEN using the str function on the profile
+
     THEN the __str__ format is returned
     '''
 

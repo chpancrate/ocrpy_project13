@@ -7,7 +7,9 @@ from lettings.models import Letting, Address
 def test_letting_str():
     '''
     GIVEN a Letting object
+
     WHEN using the str function on the letting
+
     THEN the __str__ format is returned
     '''
 
@@ -28,7 +30,9 @@ def test_letting_str():
 def test_address_str():
     '''
     GIVEN an Address object
+
     WHEN using the str function on the address
+
     THEN the __str__ format is returned
     '''
 

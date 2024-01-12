@@ -208,13 +208,13 @@ POSTGRES_PASSWORD=
 Il faut personaliser les valeurs suivantes :
 - SENTRY_DSN : DSN du projet Sentry lié à votre déploiement
 - SECRET_KEY : clé secrête utilisée par Django
-- ALLOWED_HOSTS : ajouter à la suite l'IP et le DSN de votre instance EC2 (ne pas oublier les virgules de séparation)
+- ALLOWED_HOSTS : ajouter à la suite l'IP et le DNS de votre instance EC2 (ne pas oublier les virgules de séparation)
 - DB_NAME : Nom de votre base de donnée ci-dessous nous utilisons ocldb
 - DB_USER : nom de votre utilisateur postgresql ci-dessous nous utilisons ocluser
 - DB_PASSWORD : mot de passe de votre utilisateur postgresql
 - POSTGRES_PASSWORD : mot de passe de l'utilisateur "postgres"
 
-Créer les dockers
+Créer et lancer les conteneurs Docker :
 ```
 docker-compose up -d
 ```
@@ -314,10 +314,9 @@ while true; do
 done
 ```
 Ce script utilise nc pour écouter le webhook et quand il le reçoit, il lance le fichier deploy.sh qui met à jour le Docker de l'application.
+Toutes les actions sont logguées dans webhook_receiver.log
 
 Rendre le script executable ```sudo chmod +x webhook_receiver.sh```
-
-Toutes les actions sont logguées dans webhook_receiver.log
 
 Lancer le script ```./webhook_receiver.sh &```
 

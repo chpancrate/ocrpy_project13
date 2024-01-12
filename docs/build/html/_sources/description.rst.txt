@@ -6,6 +6,8 @@ This application is the web site of the Orange County Lettings company. It allow
 
 Technologies
 ------------
-The applicaion is developped using the python framework Django.
+The applicaion is developped using the Django python framework.
+
 It can use sqllite or postgresql databases.
-It can also use Sentry  monitoring.
+
+It can also use Sentry monitoring.

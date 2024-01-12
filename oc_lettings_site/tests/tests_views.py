@@ -9,7 +9,9 @@ from pytest_django.asserts import assertTemplateUsed
 def test_oc_lettings_site_index_view():
     '''
     GIVEN
+
     WHEN accessing the url /
+
     THEN the template index.html is displayed
          and the site home page is displayed
     '''

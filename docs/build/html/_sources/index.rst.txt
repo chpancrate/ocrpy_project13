@@ -10,6 +10,7 @@ Welcome to OC Lettings Site's documentation!
    description
    architecture
    development
+   tests
    deployment
    :maxdepth: 2
    :caption: Contents:

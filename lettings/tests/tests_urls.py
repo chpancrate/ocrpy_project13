@@ -8,7 +8,9 @@ from lettings.models import Letting, Address
 def test_lettings_index_url():
     '''
     GIVEN
+
     WHEN accessing the url /lettings/
+
     THEN the view lettings:index is called
     '''
 
@@ -22,7 +24,9 @@ def test_lettings_index_url():
 def test_lettings_details_url():
     '''
     GIVEN a letting_id
+
     WHEN accessing the url /lettings/letting_id/
+
     THEN the view lettings:letting is called
     '''
 
