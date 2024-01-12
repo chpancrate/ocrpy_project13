@@ -80,27 +80,58 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 ### Architecture
 
-Le système de production est composé de trois conteneurs dockers contenant :
+Le système de production est composé de trois conteneurs Docker contenant :
 - nginx
-- posgredsql
+- posgresql
 - l'application django
 
-Ils sont hébergés sur une machine EC2 t2 micro chez AWS.
+La definition des conteneurs se trouve dans le fichier compose.yml à la racine du projet.
 
-### Procédure d'installation
+Un workflow CI/CD est créé chez CircleCI afin de tester le code et de générer une image Docker de l'application sur un repository hébergé sur Docker Hub. 
+
+Les conteneurs sont hébergés sur une machine EC2 t2 micro chez AWS. En utilisant un webhook paramétré sur Docker Hub, le conteneur de l'application est mis à jour automatiquement lors de la génération d'une nouvelle image sur le repository Docker Hub.
+
+Il y a également un suivi grace à Sentry.
+
+Il est donc nécessaire d'avoir des comptes sur les sites suivants:
+- Sentry (Créer un projet pour l'application et noter le DSN correspondant)
+- CircleCI
+- Docker Hub (créer un repository pour l'application)
+- AWS
+
+### CircleCI
+
+Avant le paramétrage du projet sur CircleCi, il faut mettre à jour le fichier config.yml situé dans le répertoire .circleci et remplacer chpancrate/ocrp13-pgsql par la référence de votre repository sur Docker Hub.
+
+Lors de la création du projet dans CircleCI, il suffit de donner l'adresse du repository Github du projet pour que CircleCI récupère le fichier de workflow et lance celui-ci.
+
+La première exécution (lancèe automatiquement à la création) se finira en erreur car il faut definir les variables d'environnement ci-dessous pour que le workflow se termine normalement.
+
+| variable | valeur |
+|----------|--------|
+| ALLOWED_HOSTS | localhost,127.0.0.1,nginx |
+| DEBUG | False |
+| DOCKER_USER | votre utilisateur Docker Hub |
+| DOCKER_PASS | votre mot de passe Docker Hub |
+| SECRET_KEY | phrase secrête |
+| SENTRY_DSN | le DSN de votre projet Sentry de suivi |
+
+### Procédure d'installation chez AWS
 
 #### Prérequis
 
 Il est nécessaire d'avoir un compte chez AWS et de créer une instance AWS EC2 t2 micro avec un disque de 20 Go et utilisant Amazon linux.
-A la création de l'instance il faut s'assurer que le traffic est accépter depuis internet pour les 2 ports suivant :
+A la création de l'instance, il faut s'assurer que le traffic est accepter depuis internet pour les 2 ports suivant :
 - 80 : pour le site web
 - 8001 : pour le webhook de Docker Hub
 
-Il faut prévoir des outils permettant de se connecter avec un terminal à la machine et d'y transférer des fichiers. Dans un environnement Windows il est possible d'utiliser :
-- putty : https://www.putty.org
-- winscp : https://winscp.net/eng/index.php
+Il est possible de se connecter à l'instance directement à partir du site d'AWS.
 
-Dans la suite des instructions nous assumerons que l'utilisateur utiliser pour se connecter à AWS est ec2-user. Si ce n'est pas votre cas remplacez-le par votre utilisateur.
+Dans un environnement Windows il est possible d'utiliser :
+- putty : https://www.putty.org, pour la connexion en terminal
+- winscp : https://winscp.net/eng/index.php, pour le transfert de fichier
+
+Dans la suite des instructions nous assumerons que l'utilisateur utilisé pour se connecter à AWS est ec2-user. Si ce n'est pas votre cas remplacez-le par votre utilisateur.
 
 #### Installation de Docker
 
@@ -108,7 +139,7 @@ Les conteneurs nécessitent l'installation de Docker sur la machine. Pour cela i
 
 Se connecter à la machine avec un terminal.
 
-Vérifier que les package de la machine sont bien à jour.
+Vérifier que les packages de la machine sont bien à jour.
 ```
 sudo yum update -y
 ```
@@ -118,9 +149,9 @@ sudo yum install docker
 sudo usermod -a -G docker ec2-user
 newgrp docker
 ```
-Les 2 dernières commande permettent à l'utilisateur de ec2-user de lancer Docker sans utiliser sudo.
+Les 2 dernières commandes permettent à l'utilisateur de ec2-user de lancer Docker sans utiliser sudo.
 
-Pour vérifier la bonne installation de Docker utiliser ``` docker version ```.
+Pour vérifier la bonne installation de Docker utiliser la commande ``` docker version ```.
 
 Les conteneurs sont lancés avec Docker Compose. Voici comment l'installer:
 ```
@@ -178,8 +209,8 @@ Il faut personaliser les valeurs suivantes :
 - SENTRY_DSN : DSN du projet Sentry lié à votre déploiement
 - SECRET_KEY : clé secrête utilisée par Django
 - ALLOWED_HOSTS : ajouter à la suite l'IP et le DSN de votre instance EC2 (ne pas oublier les virgules de séparation)
-- DB_NAME : Nom de votre base de donnée
-- DB_USER : nom de votre utilisateur postgresql
+- DB_NAME : Nom de votre base de donnée ci-dessous nous utilisons ocldb
+- DB_USER : nom de votre utilisateur postgresql ci-dessous nous utilisons ocluser
 - DB_PASSWORD : mot de passe de votre utilisateur postgresql
 - POSTGRES_PASSWORD : mot de passe de l'utilisateur "postgres"
 
@@ -188,15 +219,20 @@ Créer les dockers
 docker-compose up -d
 ```
 
-Vérifier que la page d'accueil du site s’affiche bien en allant sur l'IP ou le DSN de votre site. Attention à ce stade la base de donnée n'existe pas donc seul la page d'accueil marche.
+Vérifier que la page d'accueil du site s’affiche bien en allant sur l'IP ou le DSN de votre site. Attention, à ce stade la base de donnée n'existe pas donc seule la page d'accueil marche.
 
-#### mise à jour de la base 
+#### Mise à jour de la base 
 
 Avec la commande ```docker ps``` récupérer l'id du Docker postgres et s'y connecter avec :
-```docker exec -it iddudockerpostgres bash```
+```
+docker exec -it idDuDockerPostgres bash
+```
 
-Une fois sur le terminal se connecter à postgresql
-```psql -d postgres -U postgres```
+Une fois sur le terminal se connecter à postgresql.
+```
+psql -d postgres -U postgres
+```
+
 Créer l'utilisateur ocluser avec un mot de passe et l'utiliser pour créer la base de donnée
 
 ```
@@ -210,9 +246,9 @@ Mettre à jour le fichier .env avec le mot de passe du l'utilisateur ocluser.
 
 Se connecter au docker de l'application.
 ```
-docker exec -it iddudockerapp /bin/sh
+docker exec -it idDuDockerApp /bin/sh
 ```
-Une fois sur le terminal effectuer les migrations.
+Une fois sur le terminal, effectuer les migrations.
 ```
 python manage.py migrate
 ```
@@ -225,7 +261,7 @@ python manage.py loaddata datadump.json
 
 #### Automatisation de la mise à jour du site
 
-Nous allons maintenant automatiser la mise à jour du Docker de l'application quand le repository est mis à jour.
+Nous allons maintenant automatiser la mise à jour du Docker de l'application quand le repository est mis à jour. Les scripts décrits ci-dessous peuvent être trouvés dans le répertoire /deployment.  
 
 Dans le répertoire home/ec2-user créer un fichier deploy.sh :
 ```
@@ -236,12 +272,12 @@ Dans le répertoire home/ec2-user créer un fichier deploy.sh :
 echo "Received webhook event."
 
 # Pull the application new version
-docker pull chpancrate/ocrp13-pgsql:latest
+docker pull "yourDockerHubRepositoryReference":latest
 
 # Restart the Docker containers using the specific image
 docker-compose -f docker-compose.yml up -d --no-deps oc_lettings_site
 ```
-Ce script sera utiliser pour mettre à jour le Docker de l'application.
+Ce script sera utiliser pour mettre à jour le Docker de l'application. "yourDockerHubRepositoryReference" correspond à la reference que vous avez utilisée dans .circleci/config.yml à la place de chpancrate/ocrp13-pgsql.
 
 Rendre le script executable ```sudo chmod +x deploy.sh```
 
