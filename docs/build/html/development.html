@@ -76,6 +76,27 @@
 </pre></div>
 </div>
 </section>
+<section id="environment-variables-set-up">
+<h2>Environment variables set-up<a class="headerlink" href="#environment-variables-set-up" title="Link to this heading">¶</a></h2>
+<p>The environment variables are defined by the package python-dotenv using a file .env. Create the .env file in the root of your project with the following content :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># sentry configuration</span>
+<span class="n">SENTRY_DSN</span><span class="o">=</span> <span class="s2">&quot;your Sentry project DSN&quot;</span>
+
+<span class="c1"># SECURITY WARNING: keep the secret key used in production secret!</span>
+<span class="n">SECRET_KEY</span><span class="o">=</span> <span class="s2">&quot;secret key to define and keep secret&quot;</span>
+
+<span class="c1"># SECURITY WARNING: don&#39;t run with debug turned on in production!</span>
+<span class="n">DEBUG</span><span class="o">=</span><span class="kc">False</span>
+
+<span class="n">ALLOWED_HOSTS</span><span class="o">=</span><span class="n">localhost</span><span class="p">,</span><span class="mf">127.0.0.1</span><span class="p">,</span><span class="n">nginx</span>
+
+<span class="c1"># database configuration</span>
+<span class="n">DB_ENGINE</span><span class="o">=</span><span class="n">django</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">sqlite3</span>
+<span class="n">DB_NAME</span><span class="o">=</span><span class="n">oc</span><span class="o">-</span><span class="n">lettings</span><span class="o">-</span><span class="n">site</span><span class="o">.</span><span class="n">sqlite3</span>
+</pre></div>
+</div>
+<p>This setup will allow to use the sqlite development database.</p>
+</section>
 <section id="to-launch-the-web-site">
 <h2>To launch the web site<a class="headerlink" href="#to-launch-the-web-site" title="Link to this heading">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
@@ -111,6 +132,7 @@
 <li><a class="reference internal" href="#">Development Environment setup</a><ul>
 <li><a class="reference internal" href="#code-cloning">Code cloning</a></li>
 <li><a class="reference internal" href="#virtual-environment-creation-and-activation">Virtual environment creation and activation</a></li>
+<li><a class="reference internal" href="#environment-variables-set-up">Environment variables set-up</a></li>
 <li><a class="reference internal" href="#to-launch-the-web-site">To launch the web site</a></li>
 <li><a class="reference internal" href="#linting">Linting</a></li>
 </ul>

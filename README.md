@@ -32,6 +32,26 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 - Confirmer que la commande `pip` exécute l'exécutable pip dans l'environnement virtuel, `which pip`
 - Pour désactiver l'environnement, `deactivate`
 
+#### Paramétrer les variables d'environnement
+- Créez un fichier .env avec le format suivant:
+```
+# sentry configuration
+SENTRY_DSN= "DSN de votre projet Sentry"
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY= "Clé secrête à definir et ne pas divulguer"
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG=False
+
+ALLOWED_HOSTS=localhost,127.0.0.1,nginx
+
+# database configuration
+DB_ENGINE=django.db.backends.sqlite3
+DB_NAME=oc-lettings-site.sqlite3
+```
+-  Ce fichier permet au package python-dotenv de définir les variables d'environnement nécessaires et d'utiliser la base sqlite de développement.
+
 #### Exécuter le site
 
 - `cd /path/to/Python-OC-Lettings-FR`

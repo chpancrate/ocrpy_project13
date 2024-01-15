@@ -33,6 +33,29 @@ To deactivate the environment
 
     deactivate
 
+Environment variables set-up
+----------------------------
+The environment variables are defined by the package python-dotenv using a file .env. Create the .env file in the root of your project with the following content :
+
+.. code-block::
+
+    # sentry configuration
+    SENTRY_DSN= "your Sentry project DSN"
+
+    # SECURITY WARNING: keep the secret key used in production secret!
+    SECRET_KEY= "secret key to define and keep secret"
+
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG=False
+
+    ALLOWED_HOSTS=localhost,127.0.0.1,nginx
+
+    # database configuration
+    DB_ENGINE=django.db.backends.sqlite3
+    DB_NAME=oc-lettings-site.sqlite3
+
+This setup will allow to use the sqlite development database. 
+
 To launch the web site
 ----------------------
 
