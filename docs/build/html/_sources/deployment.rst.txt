@@ -240,7 +240,7 @@ Upload the data.
 Site update automation
 """"""""""""""""""""""
 
-The goal is now to automate the update of the applicationconatiner when a new image is uploaded on the Docker Hub repository.
+The goal is now to automate the update of the application container when a new image is uploaded on the Docker Hub repository.
 The scripts described below can be found in ./deployment.  
 
 In /home/ec2-user create a deploy.sh file:
@@ -260,11 +260,11 @@ In /home/ec2-user create a deploy.sh file:
     docker-compose -f docker-compose.yml up -d --no-deps oc_lettings_site
 
 This script is used to update the application container.
-yourDockerHubRepositoryReference" is your repository which you used in .circleci/config.yml to replace chpancrate/ocrp13-pgsql.
+"yourDockerHubRepositoryReference" is your repository which you used in .circleci/config.yml to replace chpancrate/ocrp13-pgsql.
 
 Make the script executable ``sudo chmod +x deploy.sh``.
 
-In you Docker Hub repository add a webhook to your EC2 instance. It will be launched each time a new image is created.
+In your Docker Hub repository add a webhook to your EC2 instance. It will be launched each time a new image is created.
 
 - payload url : http://your-ec2-instance-ip:8001
 - payload : application/json
@@ -299,7 +299,7 @@ Create a webhook_receiver.sh file with the following content :
         echo "------------  END OF DEPLOYMENT  ------------" >> "$log_file"
     done
 
-This script uses nc to listen to the webhook and when receiving it, execute the file deploy.sh which update the application Docker container.
+This script uses nc to listen to the webhook and when receiving it, executes the file deploy.sh which update the application Docker container.
 All actions are logged in webhook_receiver.log
 
 Make the script executable
@@ -315,4 +315,4 @@ Launch the script
 
     ./webhook_receiver.sh &
 
-When a new image is created is the Docker Hub repository the application container will now be updated.
+When a new image is created in the Docker Hub repository the application container will now be updated.

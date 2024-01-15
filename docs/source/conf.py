@@ -35,3 +35,4 @@ exclude_patterns = []
 
 html_theme = 'bizstyle'
 html_static_path = ['_static']
+html_output = 'build/html'

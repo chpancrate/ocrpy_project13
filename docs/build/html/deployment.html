@@ -243,7 +243,7 @@ Beware : the database is empty only the homepage works.</p>
 </section>
 <section id="site-update-automation">
 <h3>Site update automation<a class="headerlink" href="#site-update-automation" title="Link to this heading">¶</a></h3>
-<p>The goal is now to automate the update of the applicationconatiner when a new image is uploaded on the Docker Hub repository.
+<p>The goal is now to automate the update of the application container when a new image is uploaded on the Docker Hub repository.
 The scripts described below can be found in ./deployment.</p>
 <p>In /home/ec2-user create a deploy.sh file:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
@@ -260,9 +260,9 @@ The scripts described below can be found in ./deployment.</p>
 </pre></div>
 </div>
 <p>This script is used to update the application container.
-yourDockerHubRepositoryReference” is your repository which you used in .circleci/config.yml to replace chpancrate/ocrp13-pgsql.</p>
+“yourDockerHubRepositoryReference” is your repository which you used in .circleci/config.yml to replace chpancrate/ocrp13-pgsql.</p>
 <p>Make the script executable <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">deploy.sh</span></code>.</p>
-<p>In you Docker Hub repository add a webhook to your EC2 instance. It will be launched each time a new image is created.</p>
+<p>In your Docker Hub repository add a webhook to your EC2 instance. It will be launched each time a new image is created.</p>
 <ul class="simple">
 <li><p>payload url : <a class="reference external" href="http://your-ec2-instance-ip:8001">http://your-ec2-instance-ip:8001</a></p></li>
 <li><p>payload : application/json</p></li>
@@ -293,7 +293,7 @@ while true; do
 done
 </pre></div>
 </div>
-<p>This script uses nc to listen to the webhook and when receiving it, execute the file deploy.sh which update the application Docker container.
+<p>This script uses nc to listen to the webhook and when receiving it, executes the file deploy.sh which update the application Docker container.
 All actions are logged in webhook_receiver.log</p>
 <p>Make the script executable</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="n">webhook_receiver</span><span class="o">.</span><span class="n">sh</span>
@@ -303,7 +303,7 @@ All actions are logged in webhook_receiver.log</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">webhook_receiver</span><span class="o">.</span><span class="n">sh</span> <span class="o">&amp;</span>
 </pre></div>
 </div>
-<p>When a new image is created is the Docker Hub repository the application container will now be updated.</p>
+<p>When a new image is created in the Docker Hub repository the application container will now be updated.</p>
 </section>
 </section>
 </section>
