@@ -299,7 +299,7 @@ echo "Received webhook event."
 docker pull "yourDockerHubRepositoryReference":latest
 
 # Restart the Docker containers using the specific image
-docker-compose -f docker-compose.yml up -d --no-deps oc_lettings_site
+docker-compose -f compose.yml up -d --no-deps oc_lettings_site
 ```
 Ce script sera utilisé pour mettre à jour le Docker de l'application. "yourDockerHubRepositoryReference" correspond à la reference que vous avez utilisée dans .circleci/config.yml à la place de chpancrate/ocrp13-pgsql.
 
