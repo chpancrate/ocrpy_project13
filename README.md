@@ -17,8 +17,10 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 
 #### Cloner le repository
 
-- `cd /path/to/put/project/in`
-- `git clone https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings-FR.git`
+- Le code se trouve ici : https://github.com/chpancrate/ocrpy_project13
+- Faire un fork du projet
+- `cd /path/to/put/project/in
+- `git clone referencedevotrerepository.git
 
 #### Créer l'environnement virtuel
 
@@ -97,6 +99,8 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
 
 ## Déploiement en production
+
+Pour le déploiement en production le code à utiliser est celui du repository créer dans la partie développement.
 
 ### Architecture
 

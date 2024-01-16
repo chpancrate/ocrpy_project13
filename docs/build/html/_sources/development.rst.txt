@@ -5,11 +5,13 @@ Place yourself in the directory where you want to work.
 
 Code cloning
 ------------
-The code can be cloned from https://github.com/chpancrate/ocrpy_project13 using the command
+The code can be found here : https://github.com/chpancrate/ocrpy_project13
+
+You need to fork it, then you can clone it using the command.
 
 .. code-block::
 
-    git clone https://github.com/chpancrate/ocrpy_project13.git
+    git clone https://github.com/yourrepository/yourproject.git
 
 Virtual environment creation and activation
 -------------------------------------------

@@ -47,15 +47,17 @@
             
   <section id="deployment">
 <h1>Deployment<a class="headerlink" href="#deployment" title="Link to this heading">¶</a></h1>
+<p>The code repository to be used in this this part is the one created in the <a class="reference internal" href="development.html"><span class="doc">Development Environment setup</span></a> chapter.</p>
 <section id="architecture">
 <h2>Architecture<a class="headerlink" href="#architecture" title="Link to this heading">¶</a></h2>
 <p>The production system uses 3 Docker containers :</p>
 <ul class="simple">
 <li><p>nginx</p></li>
 <li><p>posgresql</p></li>
-<li><p>the django app</p></li>
+<li><p>the django application (OC lettings site)</p></li>
 </ul>
 <p>The containers definition is located in the compose.yml file at the root of the project.</p>
+<img alt="_images/docker_architecture.png" src="_images/docker_architecture.png" />
 <p>A CI/CD workflow is created with CircleCI to test the code and build an image of the application Docker container
 which is then uploaded in a Docker Hub repository.</p>
 <p>The containers are loaded on a EC2 t2 micro VM in AWS. Using a webhook setup on Docker Hub,
@@ -68,6 +70,12 @@ the application container is automatically updated each time a new application i
 <li><p>Docker Hub (create a repository for  the application)</p></li>
 <li><p>AWS</p></li>
 </ul>
+<figure class="align-default" id="id1">
+<img alt="_images/CICD_Workflow.png" src="_images/CICD_Workflow.png" />
+<figcaption>
+<p><span class="caption-text">Summary of the CI/CD workflow</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="circleci">
 <h2>CircleCI<a class="headerlink" href="#circleci" title="Link to this heading">¶</a></h2>

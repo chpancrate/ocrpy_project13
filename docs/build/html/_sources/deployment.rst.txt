@@ -1,6 +1,8 @@
 Deployment
 ==========
 
+The code repository to be used in this this part is the one created in the :doc:`development` chapter.
+
 Architecture
 ------------
 
@@ -8,9 +10,11 @@ The production system uses 3 Docker containers :
 
 - nginx
 - posgresql
-- the django app
+- the django application (OC lettings site)
 
 The containers definition is located in the compose.yml file at the root of the project.
+
+.. image:: ./images/docker_architecture.png
 
 A CI/CD workflow is created with CircleCI to test the code and build an image of the application Docker container
 which is then uploaded in a Docker Hub repository.
@@ -26,6 +30,10 @@ Accounts are needed for the following sites:
 - CircleCI
 - Docker Hub (create a repository for  the application)
 - AWS
+
+.. figure:: ./images/CICD_Workflow.png
+
+    Summary of the CI/CD workflow
 
 CircleCI
 --------

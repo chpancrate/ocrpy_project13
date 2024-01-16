@@ -6,6 +6,8 @@ The site is composed of the main application oc_lettings_site which uses two ser
 - lettings, which handles the lettings
 - profiles, which handles the users profiles 
 
+.. image:: ./images/modules.png
+
 Database
 --------
 
