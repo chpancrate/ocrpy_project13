@@ -140,6 +140,9 @@ La première exécution (lancèe automatiquement à la création) se finira en e
 | SECRET_KEY | phrase secrête |
 | SENTRY_DSN | le DSN de votre projet Sentry de suivi |
 
+
+ATTENTION : lors des tests du workflow CircleCI, si le titre de la page web est modifié, il est important que le titre du site contienne toujours 'Welcome to Holiday Homes', sinon certains tests échoueront.
+
 ### Procédure d'installation chez AWS
 
 #### Prérequis
@@ -205,6 +208,8 @@ A partir du repository copier les fichiers suivant :
 - compose.yml
 - le répertoire nginx
 
+Modifier le fichier compose.yml pour remplacer chpancrate/ocrp13-pgsql:latest par la source de votre image.
+
 Créez un fichier .env avec le format suivant :
 ```
 # sentry configuration
@@ -266,7 +271,7 @@ CREATE DATABASE ocldb OWNER = ocluser;
 ```
 Sortir de la session postgres avec ```.q``` et du terminal du docker avec ```exit```.
 
-Mettre à jour le fichier .env avec le mot de passe du l'utilisateur ocluser.
+Mettre à jour le fichier .env avec le mot de passe du l'utilisateur ocluser. Les conteneurs Docker doivent être redémarrés pour prendre en compte les changement du fichier .env 
 
 Se connecter au docker de l'application.
 ```
@@ -308,7 +313,6 @@ Rendre le script executable ```sudo chmod +x deploy.sh```
 Sur le site du Docker hub dans le repository ajouter un webhook vers votre instance, il sera déclenché à chaque création d'une nouvelle image.
 
 - payload url : http://your-ec2-instance-ip:8001
-- payload : application/json
 
 De retour sur l'instance EC2 installer nc pour écouter le Webhook.
 ```

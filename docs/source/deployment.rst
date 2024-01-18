@@ -65,6 +65,8 @@ The first run (launched at creation) will fail because the following environment
     * - SENTRY_DSN
       - DSN from your Sentry project
 
+BEWARE : during the CI/CD workflow testing the homepage title can be modified but must still contain 'Welcome to Holiday Homes', to ensure the tests do not fail.
+
 AWS Installation
 ----------------
 
@@ -110,7 +112,7 @@ Install Docker.
 
 The last 2 commands allows the user ec2-user to launch Docker without sudo.
 
-To check Docker installation use the command ``docker version``.
+To check Docker installation use the command ``docker version``
 
 The containers are launched with Docker Compose. Here is how to install it:
 
@@ -124,7 +126,7 @@ Setup permissions in order to execute docker compose:
 
     sudo chmod +x /usr/local/bin/docker-compose
 
-To check the Docker Compose installation use ``docker-compose version``.
+To check the Docker Compose installation use ``docker-compose version``
 
 Start Docker service:
 
@@ -146,8 +148,12 @@ Application installation
 Go in home/ec2-user.
 
 From the git hub repository copy the following files :
+
 - compose.yml
+
 - ./nginx
+
+Update the file compose.yml and replace chpancrate/ocrp13-pgsql:latest by your Docker image.
 
 Create a .env file with the following content :
 
@@ -220,9 +226,9 @@ Create the user ocluser with a password and create a database.
     ALTER USER ocluser WITH NOCREATEDB NOCREATEROLE;
     CREATE DATABASE ocldb OWNER = ocluser;
 
-Exit from the postgres session with ``.q`` and the container terminal with ``exit``.
+Exit from the postgres session with ``.q`` and the container terminal with ``exit``
 
-If needed, update the .env file with the password and user for the database.
+If needed, update the .env file with the password and user for the database. The Docker containers need to be restarted in order to take into account the changes in the .env file.
 
 Connect to the application container.
 
@@ -265,17 +271,16 @@ In /home/ec2-user create a deploy.sh file:
     docker pull "yourDockerHubRepositoryReference":latest
 
     # Restart the Docker containers using the specific image
-    docker-compose -f docker-compose.yml up -d --no-deps oc_lettings_site
+    docker-compose -f compose.yml up -d --no-deps oc_lettings_site
 
 This script is used to update the application container.
 "yourDockerHubRepositoryReference" is your repository which you used in .circleci/config.yml to replace chpancrate/ocrp13-pgsql.
 
-Make the script executable ``sudo chmod +x deploy.sh``.
+Make the script executable ``sudo chmod +x deploy.sh``
 
 In your Docker Hub repository add a webhook to your EC2 instance. It will be launched each time a new image is created.
 
 - payload url : http://your-ec2-instance-ip:8001
-- payload : application/json
 
 Back on you EC2 instance, install nc to listen to the Webhook.
 

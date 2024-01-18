@@ -115,6 +115,7 @@ CircleCI will read the workflow file and launch it.</p>
 </tr>
 </tbody>
 </table>
+<p>BEWARE : during the CI/CD workflow testing the homepage title can be modified but must still contain ‘Welcome to Holiday Homes’, to ensure the tests do not fail.</p>
 </section>
 <section id="aws-installation">
 <h2>AWS Installation<a class="headerlink" href="#aws-installation" title="Link to this heading">¶</a></h2>
@@ -150,7 +151,7 @@ If you are using another user do not forget to replace ec2-user by the proper us
 </pre></div>
 </div>
 <p>The last 2 commands allows the user ec2-user to launch Docker without sudo.</p>
-<p>To check Docker installation use the command <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">version</span></code>.</p>
+<p>To check Docker installation use the command <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">version</span></code></p>
 <p>The containers are launched with Docker Compose. Here is how to install it:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">curl</span> <span class="o">-</span><span class="n">L</span> <span class="s2">&quot;https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)&quot;</span> <span class="o">-</span><span class="n">o</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span>
 </pre></div>
@@ -159,7 +160,7 @@ If you are using another user do not forget to replace ec2-user by the proper us
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span>
 </pre></div>
 </div>
-<p>To check the Docker Compose installation use <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">version</span></code>.</p>
+<p>To check the Docker Compose installation use <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">version</span></code></p>
 <p>Start Docker service:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">service</span> <span class="n">docker</span> <span class="n">start</span>
 </pre></div>
@@ -173,9 +174,12 @@ If you are using another user do not forget to replace ec2-user by the proper us
 <section id="application-installation">
 <h3>Application installation<a class="headerlink" href="#application-installation" title="Link to this heading">¶</a></h3>
 <p>Go in home/ec2-user.</p>
-<p>From the git hub repository copy the following files :
-- compose.yml
-- ./nginx</p>
+<p>From the git hub repository copy the following files :</p>
+<ul class="simple">
+<li><p>compose.yml</p></li>
+<li><p>./nginx</p></li>
+</ul>
+<p>Update the file compose.yml and replace chpancrate/ocrp13-pgsql:latest by your Docker image.</p>
 <p>Create a .env file with the following content :</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># sentry configuration</span>
 <span class="n">SENTRY_DSN</span><span class="o">=</span>
@@ -233,8 +237,8 @@ Beware : the database is empty only the homepage works.</p>
 <span class="n">CREATE</span> <span class="n">DATABASE</span> <span class="n">ocldb</span> <span class="n">OWNER</span> <span class="o">=</span> <span class="n">ocluser</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>Exit from the postgres session with <code class="docutils literal notranslate"><span class="pre">.q</span></code> and the container terminal with <code class="docutils literal notranslate"><span class="pre">exit</span></code>.</p>
-<p>If needed, update the .env file with the password and user for the database.</p>
+<p>Exit from the postgres session with <code class="docutils literal notranslate"><span class="pre">.q</span></code> and the container terminal with <code class="docutils literal notranslate"><span class="pre">exit</span></code></p>
+<p>If needed, update the .env file with the password and user for the database. The Docker containers need to be restarted in order to take into account the changes in the .env file.</p>
 <p>Connect to the application container.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">exec</span> <span class="o">-</span><span class="n">it</span> <span class="s2">&quot;DockerAppId&quot;</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">sh</span>
 </pre></div>
@@ -264,16 +268,15 @@ The scripts described below can be found in ./deployment.</p>
 <span class="n">docker</span> <span class="n">pull</span> <span class="s2">&quot;yourDockerHubRepositoryReference&quot;</span><span class="p">:</span><span class="n">latest</span>
 
 <span class="c1"># Restart the Docker containers using the specific image</span>
-<span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="o">-</span><span class="n">f</span> <span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">.</span><span class="n">yml</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">deps</span> <span class="n">oc_lettings_site</span>
+<span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="o">-</span><span class="n">f</span> <span class="n">compose</span><span class="o">.</span><span class="n">yml</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">deps</span> <span class="n">oc_lettings_site</span>
 </pre></div>
 </div>
 <p>This script is used to update the application container.
 “yourDockerHubRepositoryReference” is your repository which you used in .circleci/config.yml to replace chpancrate/ocrp13-pgsql.</p>
-<p>Make the script executable <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">deploy.sh</span></code>.</p>
+<p>Make the script executable <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">deploy.sh</span></code></p>
 <p>In your Docker Hub repository add a webhook to your EC2 instance. It will be launched each time a new image is created.</p>
 <ul class="simple">
 <li><p>payload url : <a class="reference external" href="http://your-ec2-instance-ip:8001">http://your-ec2-instance-ip:8001</a></p></li>
-<li><p>payload : application/json</p></li>
 </ul>
 <p>Back on you EC2 instance, install nc to listen to the Webhook.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">yum</span> <span class="n">install</span> <span class="n">nc</span>
