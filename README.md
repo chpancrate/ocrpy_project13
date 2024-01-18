@@ -349,3 +349,7 @@ Rendre le script executable ```sudo chmod +x webhook_receiver.sh```
 Lancer le script ```./webhook_receiver.sh &```
 
 Lors de la mise à jour de l'image, le Docker de l'application sera maintenant mis à jour.
+
+## Documentation
+
+Une documentation complète (en anglais) peut-être trouvée ici : https://ocrpy-project13.readthedocs.io/en/latest/index.html
